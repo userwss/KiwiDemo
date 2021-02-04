@@ -1,0 +1,19 @@
+enum Type {
+  FLAT = 0;
+  ROUND = 1;
+  POINTED = 2;
+}
+
+struct Color {
+  int red;
+  int green;
+  int blue;
+  int alpha;
+}
+
+message Example {
+  float clientID = 1;
+  Type type = 2;
+  Color[] colors = 3;
+  string str = 4;
+}

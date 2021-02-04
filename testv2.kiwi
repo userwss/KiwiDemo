@@ -1,0 +1,5 @@
+package testv2;
+message Test {
+  int x = 1;
+  int y = 2;
+}

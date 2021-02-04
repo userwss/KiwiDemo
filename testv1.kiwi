@@ -1,0 +1,15 @@
+package testv1;
+
+enum GenderType{
+  MALE = 0;
+  FEMALE = 1;
+  OTHER = 2;
+}
+
+message PersonalTable {
+  uint id = 1;
+  string name = 2;
+  byte age = 3;
+  GenderType gender = 4;
+  uint phoneNum = 5;
+}
