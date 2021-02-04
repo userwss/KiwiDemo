@@ -1,4 +1,4 @@
-## @evanw KiwiBuffers的简单demo。
+## @evanw KiwiBuffers的简单demo
 ### 目前只包含了C++语言，QT编译
   要使用kiwic命令，首先要安装kiwi环境 `npm install -g kiwi-schema`
   ***
