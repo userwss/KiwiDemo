@@ -1,38 +1,6 @@
-﻿#define IMPLEMENT_KIWI_H
-#define IMPLEMENT_SCHEMA_H
+﻿#include "main.h"
 
-#include "testv1.h"
-#include <QDebug>
-#include "kiwi.h"
-#include <QTime>
-#include <QApplication>
-#include <QXmlStreamReader>
-#include <QFile>
-#include <QColor>
-//#include <fstream>
-//#include <iostream>
-using namespace std;
-
-struct Colors {
-    uint8_t  m_color[4];
-
-    void toString() {
-        for (uint8_t color: m_color) {
-            qDebug() << color;
-        }
-    }
-};
-
-class BasicInfo
-{
-public:
-    qreal    m_clientID;
-    uint     m_type;
-    vector<Colors> m_clrs;
-    QString  m_name;
-};
-
-int serialize() {
+int Main::serialize() {
     QTime time;
     time.start();
     kiwi::ByteBuffer buffer;
@@ -82,7 +50,7 @@ void readFile(const char *name, kiwi::ByteBuffer &bb) {
     qDebug() << "read simple time = " << time.elapsed() << "ms, buffer size: " << bb.size();
 }
 
-int deserialize() {
+int Main::deserialize() {
     QTime time;
     time.start();
 
@@ -138,7 +106,7 @@ int deserialize() {
     return 0;
 }
 
-int xmlSave() {
+int Main::xmlSave() {
     QTime time;
     time.start();
 
@@ -175,7 +143,7 @@ int xmlSave() {
     return costTime;
 }
 
-int xmlParse() {
+int Main::xmlParse() {
     QTime time;
     time.start();
 
@@ -243,16 +211,21 @@ int main(int argc, char *argv[]) {
 //    qDebug() << "十万级数组数据+长字符串，XML与Kiwi读写性能对比：";
     qreal allReadKiwi = 0, allReadXml = 0;
     qreal allWriteKiwi = 0, allWriteXml = 0;
+    Main _main;
     int count = 5;
     for (int i = 0; i < count; i++) {
-        allWriteXml += xmlSave();
-        allWriteKiwi += serialize();
-        allReadXml += xmlParse();
-        allReadKiwi += deserialize();
+        allWriteXml += _main.xmlSave();
+        allWriteKiwi += _main.serialize();
+        allReadXml += _main.xmlParse();
+        allReadKiwi += _main.deserialize();
     }
     qDebug() << "平均读写时长: ";
     qDebug() << "Kiwi   读:" << allReadKiwi / count << "ms, 写:" << allWriteKiwi / count;
     qDebug() << "XML   读:" << allReadXml / count << "ms, 写:" << allWriteXml / count;
 
+//    kiwiParser _kiwiParser;
+//    _kiwiParser.parserKiwi();
+    preDefine::Test test;
+    test.getTest();
     return 0;
 }

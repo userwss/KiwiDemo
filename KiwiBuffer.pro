@@ -25,13 +25,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp  \
+        KiwiParser.cpp
 
 HEADERS += \
         mainwindow.h \
     testv1.h \
     kiwi.h \
-    testv2.h
+    testv2.h \
+    main.h  \
+    KiwiParser.h    \
+    PreDefineTest.h
 
 FORMS += \
         mainwindow.ui
